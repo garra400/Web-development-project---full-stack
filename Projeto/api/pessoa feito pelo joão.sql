@@ -1,5 +1,5 @@
 CREATE TABLE tb_usuario(
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     email VARCHAR(100),
     senha VARCHAR(100),
@@ -8,7 +8,7 @@ CREATE TABLE tb_usuario(
 );
 
 CREATE TABLE tb_produto(
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     descricao VARCHAR(100),
     preco FLOAT,
@@ -16,7 +16,7 @@ CREATE TABLE tb_produto(
 );
 
 CREATE TABLE tb_categoria(
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100)
 );
 
@@ -29,7 +29,7 @@ CREATE TABLE tb_produto_categoria(
 );
 
 CREATE TABLE tb_compra(
-    id INT PRIMARY KEY, 
+    id INT PRIMARY KEY AUTO_INCREMENT, 
     id_usuario INT,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id)
 );
