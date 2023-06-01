@@ -1,0 +1,103 @@
+/* Aplicando regras em Elementos */
+body{
+    font-family: "Lucida Sans","Lucida Sans Regular","Arial";
+    font-size:12px;
+}
+div#nav > ul{
+    font-family: "Lucida Sans","Lucida Sans Regular","Arial";
+    font-size:14px; 
+    list-style-type:square;
+    margin:15px;
+    padding:0;
+}
+div#nav > ul > li > a{
+    display:block;
+    color: #0ff;
+    text-decoration:none;
+    padding:8px 0 8px 16px;
+}
+/*Altera o comportamento do item de menu quando passa o mouse sobre ela*/
+div#nav > ul > li > a:hover{
+    background-color:#999;
+    color:white;
+    transition: 0.5s;
+    transform: scale(1,1.1);
+}
+.checkbox-btn {
+    display: none;
+  }
+  
+  .checkmark {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+  }
+  
+  .checkbox-btn:checked + .checkmark {
+    background-color: #2196f3;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-btn:checked + .checkmark:after {
+    display: block;
+  }
+  
+  .checkbox-cell {
+    text-align: center;
+}
+h1{
+    color: blue;
+    font-size: x-large;
+    font-family:"Trebutchet MS", "Lucida Sans Unicode", "Arial";
+    text-align: center;
+}
+h2{
+    color:rgba(0, 0, 255, 0.5);
+    font-size:large;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+#header,#footer{
+    color: white;
+    text-align: center;
+}
+#header{
+    font-size:xx-large;
+    font-family:"Trebutchet MS",Georgia, 'Times New Roman', "Times", "serif";
+    padding: 10px 20px 10px 20px;
+    background: linear-gradient(90deg,rgb(230, 135, 135) 0.1%,rgb(200,26,9) 99.9%);
+}
+#nav{
+    background-color: #eee;
+    width:10%;
+    float:left;
+}
+#footer{
+    background-color: rgb(158, 37, 26);
+    padding: 10px;
+    clear: left;
+    font-size:0.8em;
+}
+#main{
+    width:60%;
+    float:left;
+}
+#pub{
+    float:right;
+    width: 20%;
+}
+/* Regra para Classes */
+.active > a{
+    background-color: rgb(187, 42, 28); 
+    text-decoration:underline !important;
+    color: white !important;
+}
+.active > a:hover{
+    background-color: rgb(172, 30, 17) !important;
+}
