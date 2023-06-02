@@ -23,6 +23,35 @@ div#nav > ul > li > a:hover{
     transition: 0.5s;
     transform: scale(1,1.1);
 }
+.checkbox-btn {
+    display: none;
+  }
+  
+  .checkmark {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ccc;
+  }
+  
+  .checkbox-btn:checked + .checkmark {
+    background-color: #2196f3;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .checkbox-btn:checked + .checkmark:after {
+    display: block;
+  }
+  
+  .checkbox-cell {
+    text-align: center;
+}
 h1{
     color: blue;
     font-size: x-large;

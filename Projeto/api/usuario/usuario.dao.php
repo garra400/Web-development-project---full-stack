@@ -26,11 +26,11 @@ class UsuarioDAO {
             (nome, email, senha, nascimento, administrador) 
             VALUES (:nome, :email, :senha, :nasc, :adm)");
         
-        $stmt->bindValue("nome", $usuario->nome);
-        $stmt->bindValue("email", $usuario->email);
-        $stmt->bindValue("senha", $usuario->senha);
-        $stmt->bindValue("nasc", $usuario->nascimento);
-        $stmt->bindValue("adm", $usuario->administrador);
+        $stmt->bindValue("nome", @$usuario->nome);
+        $stmt->bindValue("email", @$usuario->email);
+        $stmt->bindValue("senha", @$usuario->senha);
+        $stmt->bindValue("nasc", @$usuario->nascimento);
+        $stmt->bindValue("adm", @$usuario->administrador);
 
         $stmt->execute();
         $usuario = clone $usuario;

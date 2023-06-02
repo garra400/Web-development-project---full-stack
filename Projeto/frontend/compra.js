@@ -27,7 +27,7 @@ function getAll() {
  * Objetivo: adicionar uma linha na tabela HTML.
  */
 function addTableRow(compra) {
-  const table = document.getElementById("tbCompra");
+  const table = document.getElementById("tb_compra");
 
   // Criando uma linha para adicionar na tabela
   const tr = document.createElement("tr");

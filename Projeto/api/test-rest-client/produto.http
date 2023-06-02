@@ -11,7 +11,8 @@ Content-Type: application/json
   "nome": "Produto mais caro",
   "descricao": "Aumentou o preco",
   "preco": 2.50,
-  "quantidade" : 10
+  "quantidade" : 10,
+  "id_categoria": 1
 }
 
 ### Criar um produto
@@ -22,7 +23,8 @@ Content-Type: application/json
   "nome": "Produto mais barato",
   "descricao": "Preco padrao",
   "preco": 1.00,
-  "quantidade" : 10
+  "quantidade" : 10,
+  "id_categoria": 1
 }
 
 

@@ -21,13 +21,34 @@ function getAll() {
     });
 }
 
+function filtrarTabela() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("filtro");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tb_categoria");
+  tr = table.getElementsByTagName("tr");
+
+  // Percorre todas as linhas da tabela e oculta aquelas que não correspondem ao filtro
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1]; // Obtém a coluna com o nome do produto
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 /**
  * Função: addTableRow()]
  *
  * Objetivo: adicionar uma linha na tabela HTML.
  */
 function addTableRow(categoria) {
-  const table = document.getElementById("tbCategoria");
+  const table = document.getElementById("tb_categoria");
 
   // Criando uma linha para adicionar na tabela
   const tr = document.createElement("tr");
@@ -43,19 +64,31 @@ function addTableRow(categoria) {
   // Terceira célula da linha (tr)
   const td3 = document.createElement("td");
 
+  const btAtualiza = document.createElement("button");
+  btAtualiza.innerHTML = "Atualizar";
+  btAtualiza.onclick = () => {
+    //alert("Atualizar " + categoria.nome);
+    updateCategoria(tr, categoria.id);
+    window.open("http://localhost/projeto/frontend/categoria.html", "_self")
+  };
+
+  // Terceira célula da linha (tr)
+  const td4 = document.createElement("td");
+
   const btRemove = document.createElement("button");
   btRemove.innerHTML = "Excluir";
   btRemove.onclick = () => {
     //alert("Remover " + categoria.nome);
     deleteCategoria(tr, categoria.id);
-    2;
   };
 
-  td3.appendChild(btRemove);
+  td3.appendChild(btAtualiza);
+  td4.appendChild(btRemove);
 
   tr.appendChild(td1);
   tr.appendChild(td2);
   tr.appendChild(td3);
+  tr.appendChild(td4);
 
   table.tBodies[0].appendChild(tr);
 }
@@ -85,8 +118,6 @@ function deleteCategoria(tr, id) {
 function save() {
   // Obter a referência para os campos input
   const fNome = document.getElementById("fNome");
-  const fEmail = document.getElementById("fEmail");
-  const fNascimento = document.getElementById("fNascimento");
 
   // Criar o objeto representando uma categoria, contendo
   // os valores dos inputs
@@ -108,6 +139,39 @@ function save() {
       alert("Salvo com sucesso!");
 
       res.json().then( pes => {addTableRow(pes)});
+    } else alert("Falha ao salvar");
+  });
+}
+
+/**
+ * Função: updateCategoria
+ * Objetivo: Invocar a API, passando os dados do
+ * formulário (nome)
+ */
+function updateCategoria(tr, id) {
+  console.log("Atualizando o ID", id);
+  // Obter a referência para os campos input
+  const fNome = document.getElementById("fNome");
+
+  // Criar o objeto representando uma categoria, contendo
+  // os valores dos inputs
+  const categoria = {
+    nome: fNome.value
+  };
+
+  console.log(categoria);
+
+  // Invocar a API
+  fetch(`${URL}/categoria/update.php?id=${id}`, {
+    body: JSON.stringify(categoria),
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+  }).then((res) => {
+    if (res.status == 200 || res.status == 201) {
+      alert("Atualizado com sucesso!");
+      //res.json().then( pes => {addTableRow(pes)});
     } else alert("Falha ao salvar");
   });
 }

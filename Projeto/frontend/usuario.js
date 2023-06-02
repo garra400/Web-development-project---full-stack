@@ -27,7 +27,7 @@ function getAll() {
  * Objetivo: adicionar uma linha na tabela HTML.
  */
 function addTableRow(usuario) {
-  const table = document.getElementById("tbUsuario");
+  const table = document.getElementById("tb_usuario");
 
   // Criando uma linha para adicionar na tabela
   const tr = document.createElement("tr");
@@ -51,21 +51,33 @@ function addTableRow(usuario) {
   // Quinta célula da linha (tr)
   const td5 = document.createElement("td");
 
+  const btAtualiza = document.createElement("button");
+  btAtualiza.innerHTML = "Atualizar";
+  btAtualiza.onclick = () => {
+    //alert("Atualizar " + usuario.nome);
+    updateUsuario(tr, usuario.id);
+    window.open("http://localhost/projeto/frontend/usuario.html", "_self")
+  };
+
+  // Sexta célula da linha (tr)
+  const td6 = document.createElement("td");
+
   const btRemove = document.createElement("button");
   btRemove.innerHTML = "Excluir";
   btRemove.onclick = () => {
     //alert("Remover " + usuario.nome);
     deleteUsuario(tr, usuario.id);
-    2;
   };
 
-  td5.appendChild(btRemove);
+  td5.appendChild(btAtualiza);
+  td6.appendChild(btRemove);
 
   tr.appendChild(td1);
   tr.appendChild(td2);
   tr.appendChild(td3);
   tr.appendChild(td4);
   tr.appendChild(td5);
+  tr.appendChild(td6);
 
   table.tBodies[0].appendChild(tr);
 }
@@ -121,6 +133,43 @@ function save() {
       alert("Salvo com sucesso!");
 
       res.json().then( pes => {addTableRow(pes)});
+    } else alert("Falha ao salvar");
+  });
+}
+
+/**
+ * Função: updateUsuario
+ * Objetivo: Invocar a API, passando os dados do
+ * formulário (nome, email, nascimento, ...)
+ */
+function updateUsuario(tr, id) {
+  console.log("Atualizando o ID", id);
+  // Obter a referência para os campos input
+  const fNome = document.getElementById("fNome");
+  const fEmail = document.getElementById("fEmail");
+  const fNascimento = document.getElementById("fNascimento");
+
+  // Criar o objeto representando uma pessoa, contendo
+  // os valores dos inputs
+  const usuario = {
+    nome: fNome.value,
+    email: fEmail.value,
+    nascimento: fNascimento.value
+  };
+
+  console.log(usuario);
+
+  // Invocar a API
+  fetch(`${URL}/usuario/update.php?id=${id}`, {
+    body: JSON.stringify(usuario),
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+  }).then((res) => {
+    if (res.status == 200 || res.status == 201) {
+      alert("Atualizado com sucesso!");
+      //res.json().then( pes => {addTableRow(pes)});
     } else alert("Falha ao salvar");
   });
 }

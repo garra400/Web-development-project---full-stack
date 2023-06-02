@@ -23,13 +23,14 @@ class ProdutoDAO {
      */
     public function insert($produto) {
         $stmt = $this->pdo->prepare("INSERT INTO tb_produto 
-            (nome, descricao, preco, quantidade) 
-            VALUES (:nome, :descricao, :preco, :quantidade)");
+            (nome, descricao, preco, quantidade, id_categoria) 
+            VALUES (:nome, :descricao, :preco, :quantidade, :id_categoria)");
         
         $stmt->bindValue("nome", $produto->nome);
         $stmt->bindValue("descricao", $produto->descricao);
         $stmt->bindValue("preco", $produto->preco);
         $stmt->bindValue("quantidade", $produto->quantidade);
+        $stmt->bindValue("id_categoria", $produto->id_categoria);
 
 
         $stmt->execute();
@@ -53,7 +54,7 @@ class ProdutoDAO {
     public function update($id, $produto) {
         $stmt = $this->pdo->prepare("UPDATE tb_produto SET
                 nome = :nome, descricao = :descricao,
-                preco = :preco, quantidade = :quantidade
+                preco = :preco, quantidade = :quantidade, id_categoria = :id_categoria
                 WHERE id = :id");
         
         $data = [
@@ -61,7 +62,8 @@ class ProdutoDAO {
             "nome" => $produto->nome,
             "descricao" => $produto->descricao,
             "preco" => $produto->preco,
-            "quantidade" => $produto->quantidade
+            "quantidade" => $produto->quantidade,
+            "id_categoria" => $produto->id_categoria
         ];
 
         return $stmt->execute($data);
