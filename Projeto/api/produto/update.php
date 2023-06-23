@@ -12,6 +12,7 @@
     // Obtendo o parâmetro id vindo pela URL da requisição
     $id = $_REQUEST["id"];
 
+    
     if(!$id) {
         $responseBody = '{ "message": "Produto não informado"}';
         http_response_code(404);

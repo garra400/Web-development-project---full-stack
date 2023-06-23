@@ -1,5 +1,5 @@
 <?php
-//DAO = Data Access Object
+// DAO = Data Access Object
 
 class CategoriaDAO {
     private $pdo;
@@ -10,6 +10,7 @@ class CategoriaDAO {
 
     /**
      * Obter todas as categorias da tabela
+     * Permissões: Público
      */
     public function getAll() {
         $stmt = $this->pdo->prepare("SELECT * FROM tb_categoria");
@@ -20,6 +21,7 @@ class CategoriaDAO {
 
     /**
      * Inserir uma categoria no banco de dados
+     * Permissões: Admin
      */
     public function insert($categoria) {
         $stmt = $this->pdo->prepare("INSERT INTO tb_categoria 
@@ -34,6 +36,10 @@ class CategoriaDAO {
         return $categoria;
     }
 
+    /**
+     * Deletar uma categoria do banco de dados
+     * Permissões: Admin
+     */
     public function delete($id) {
         $stmt = $this->pdo->prepare("DELETE FROM tb_categoria 
         WHERE id=:id");
@@ -42,10 +48,14 @@ class CategoriaDAO {
 
         $stmt->execute();
         
-        // Retorna a qdt de linhas afetadas
+        // Retorna a quantidade de linhas afetadas
         return $stmt->rowCount();
     }
 
+    /**
+     * Atualizar uma categoria no banco de dados
+     * Permissões: Admin
+     */
     public function update($id, $categoria) {
         $stmt = $this->pdo->prepare("UPDATE tb_categoria SET
                 nome = :nome

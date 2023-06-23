@@ -12,16 +12,32 @@
     // Conteúdo de resposta para o cliente
     $responseBody = "";
 
-    if(!$id) {
-        http_response_code(400);
-        $responseBody = '{ "message": "ID não informado"}';
-    } else {
-
-        $qtd = $produtoDAO->delete($id);
-        if($qtd == 0) {
-            http_response_code(404);
-            $responseBody = '{ "message": "ID não existe"}';
+    try{
+        $decodeToken = JwtUtil::decode($jwt, JWT_SECRET_KEY);
+        $admin = isset($decodeToken['administrador']) && ($decodeToken['administrador'] = 1);
+        try{
+            if($admin){
+                if(!$id) {
+                    http_response_code(400);
+                    $responseBody = '{ "message": "ID não informado"}';
+                } else {
+        
+                    $qtd = $produtoDAO->delete($id);
+                    if($qtd == 0) {
+                        http_response_code(404);
+                        $responseBody = '{ "message": "ID não existe"}';
+                    }
+                } 
+            }
+            else{
+                http_response_code(400);
+            }   
         }
+        catch(Exception $e){
+            http_response_code(400);
+        }
+    } catch(Exception $e){
+        http_response_code(400);
     }
     // Gerar a resposta para o cliente
     header("Content-type: application/json");

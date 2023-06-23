@@ -1,5 +1,5 @@
 <?php
-//DAO = Data Access Object
+// DAO = Data Access Object
 
 class CompraDAO {
     private $pdo;
@@ -10,6 +10,7 @@ class CompraDAO {
 
     /**
      * Obter todas as compras da tabela
+     * Permissões: Usuário logado ou admin
      */
     public function getAll() {
         $stmt = $this->pdo->prepare("SELECT * FROM tb_compra");
@@ -20,34 +21,63 @@ class CompraDAO {
 
     /**
      * Inserir uma compra no banco de dados
+     * Permissões: Usuário logado ou admin
      */
+    
     public function insert($compra) {
-        $stmt = $this->pdo->prepare("INSERT INTO tb_compra
-            (id_usuario, data_compra) 
-            VALUES (:id_usuario, :data_compra)");
-        
-        $stmt->bindValue("id_usuario", $compra->id_usuario);
-        $stmt->bindValue("data_compra", $compra->data_compra);
-
-        $stmt->execute();
-        $compra = clone $compra;
-        $compra->id = $this->pdo->lastInsertId();
-
-        foreach ($compra->produtos as $produto) {
-            $stmt = $this->pdo->prepare("INSERT INTO tb_compra_produto
-            (id_compra, id_produto, preco_produto, quantidade) 
-            VALUES (:id_compra, :id_produto, :preco_produto, :quantidade)");
-        
-            $stmt->bindValue("id_compra", $compra->id);
-            $stmt->bindValue("id_produto", $produto->id);
-            $stmt->bindValue("preco_produto", $produto->preco);
-            $stmt->bindValue("quantidade", $produto->quantidade);
+        $estoque_suficiente = 0; //Flag
+        foreach($compra->produtos as $produto){
+            if (($produto->quantidade > $produto->quantidade_estoque) || ($produto->quantidade_estoque == 0)){
+                $estoque_suficiente = 1;
+            }
+        }
+        if ($estoque_suficiente == 0){
+            $valor_total = 0;
+            foreach ($compra->produtos as $produto) {
+                $valor_total = $valor_total + ($produto->preco * $produto->quantidade);
+            }
+            $stmt = $this->pdo->prepare("INSERT INTO tb_compra
+            (id_usuario, data_compra,valor) 
+             VALUES (:id_usuario, :data_compra,:valor)");
+            
+            $stmt->bindValue("id_usuario", $compra->id_usuario);
+            $stmt->bindValue("data_compra", $compra->data_compra);
+            $stmt->bindValue("valor", $valor_total);
 
             $stmt->execute();
+            $compra = clone $compra;
+            $compra->id = $this->pdo->lastInsertId();
+
+            foreach ($compra->produtos as $produto) {
+                $stmt = $this->pdo->prepare("INSERT INTO tb_compra_produto
+                (id_compra, id_produto, preco_produto, quantidade) 
+                VALUES (:id_compra, :id_produto, :preco_produto, :quantidade)");
+            
+                $stmt->bindValue("id_compra", $compra->id);
+                $stmt->bindValue("id_produto", $produto->id);
+                $stmt->bindValue("preco_produto", $produto->preco);
+                $stmt->bindValue("quantidade", $produto->quantidade);
+
+                $stmt->execute();
+
+                $stmt = $this->pdo->prepare("UPDATE tb_produto SET
+                quantidade = (quantidade - :quantidade_comprada)
+                WHERE id = :id");
+                $stmt->bindValue(":id", $produto->id);
+                $stmt->bindValue(":quantidade_comprada", $produto->quantidade);
+                
+                $stmt->execute();
+            }
+            return $compra;
+        } else {
+            return '{ "message": "Quantidade em estoque insuficiente"}';
         }
-        return $compra;
     }
 
+    /**
+     * Deletar uma compra do banco de dados
+     * Permissões: Usuário logado ou admin
+     */
     public function delete($id) {
         $stmt = $this->pdo->prepare("DELETE FROM tb_compra_produto
         WHERE id_compra=:id_compra");
@@ -63,10 +93,14 @@ class CompraDAO {
 
         $stmt->execute();
         
-        // Retorna a qdt de linhas afetadas
+        // Retorna a quantidade de linhas afetadas
         return $stmt->rowCount();
     }
 
+    /**
+     * Atualizar uma compra no banco de dados
+     * Permissões: Usuário logado ou admin
+     */
     public function update($id, $compra) {
         $stmt = $this->pdo->prepare("UPDATE tb_compra SET
                 id_usuario = :id_usuario, data_compra = :data_compra
@@ -77,7 +111,7 @@ class CompraDAO {
             "id_usuario" => $compra->id_usuario,
             "data_compra" => $compra->data_compra
         ];
-        print_r($data);
+
         return $stmt->execute($data);
     }
 }

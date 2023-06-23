@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Página de Login</title>
 
-    <script src="usuario.js" defer></script>
+    <script src="login.js" defer></script>
 
     <style>
         *{
@@ -54,7 +54,7 @@
   <body>
     <h1>Projeto</h1>
     <div class="container">
-        <form class="form-signin" action="authenticate.php" method="POST">
+      <form class="form-horizontal" role="form" onsubmit="event.preventDefault(); validateLogin();" method="POST" action="http://localhost/projeto/login/authenticate.php">
             <h2 class="form-signin-heading">Faça login</h2>
             <label for="username" class="sr-only">Nome de usuário:</label>
             <input type="text" id="username" name="username" class="form-control" placeholder="Nome de usuário" required autofocus>

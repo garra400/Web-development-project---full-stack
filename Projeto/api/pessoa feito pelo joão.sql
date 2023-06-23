@@ -26,6 +26,7 @@ CREATE TABLE tb_compra(
     id INT PRIMARY KEY AUTO_INCREMENT, 
     id_usuario INT,
     data_compra DATE,
+    valor FLOAT,
     FOREIGN KEY (id_usuario) REFERENCES tb_usuario (id)
 );
 

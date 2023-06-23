@@ -1,0 +1,81 @@
+/* ------------------------------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+/* ------------------------------- */
+
+/* Aplicando regras em Elementos */
+body{
+    font-size:12px;
+}
+div#nav > ul{
+    font-family: "Lucida Sans","Lucida Sans Regular","Arial";
+    font-size:14px; 
+    list-style-type:square;
+    margin:15px;
+    padding:0;
+}
+ul > li > a{
+    display:block;
+    color: #0ff;
+    text-decoration:none;
+    padding:8px 0 8px 16px;
+}
+/*Altera o comportamento do item de menu quando passa o mouse sobre ela*/
+ul > li > a:hover{
+    background-color:#999;
+    color:white;
+    transition: 0.5s;
+    transform: scale(1,1.1);
+}
+h1{
+    font-size: x-large;
+    font-family:"Trebutchet MS", "Lucida Sans Unicode", "Arial";
+    text-align: left;
+    height: 100px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Lucida Grande', "Trebutchet MS", "Lucida Sans Unicode", "Arial", 'Lucida Sans', 'Lucida Sans Regular', Verdana, sans-serif;
+    font-size: xx-large;
+    font: bold;
+    color: white !important;
+    background: linear-gradient(360deg, rgb(231, 136, 12) 1%, rgb(238, 37, 22)70%);
+}
+
+#header{
+    font-size:xx-large;
+    font-family:"Trebutchet MS",Georgia, 'Times New Roman', "Times", "serif";
+    padding: 10px 20px 10px 20px;
+    background: linear-gradient(90deg,rgb(230, 135, 135) 0.1%,rgb(200,26,9) 99.9%);
+}
+#nav{
+    background-color: #eee;
+    width:10%;
+    float:left;
+}
+#footer{
+    background-color: rgb(158, 37, 26);
+    padding: 10px;
+    clear: left;
+    font-size:0.8em;
+}
+#main{
+    width:60%;
+    float:left;
+}
+#pub{
+    float:right;
+    width: 20%;
+}
+/* Regra para Classes */
+.active > a{
+    background-color: rgb(187, 42, 28); 
+    text-decoration:underline !important;
+    color: white !important;
+}
+.active > a:hover{
+    background-color: rgb(172, 30, 17) !important;
+}

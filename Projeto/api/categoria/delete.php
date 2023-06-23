@@ -17,7 +17,7 @@
         $responseBody = '{ "message": "ID não informado"}';
     } else {
 
-        $qtd = $categoriaDAO->delete($id);
+        $qtd = $categoriaDAO->delete($id) Cascade constraints;
         if($qtd == 0) {
             http_response_code(404);
             $responseBody = '{ "message": "ID não existe"}';

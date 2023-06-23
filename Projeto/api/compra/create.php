@@ -14,7 +14,8 @@
 
     // Conteúdo de resposta para o cliente
     $responseBody = "";
-
+    $decodeToken = JwtUtil::decode($jwt, JWT_SECRET_KEY);
+    $user_id = $decodeToken('id'); 
     // Inserir o usuário no banco de dados
     $compra = $compraDAO->insert($compra);
     $responseBody = json_encode($compra); // Transf. em JSON

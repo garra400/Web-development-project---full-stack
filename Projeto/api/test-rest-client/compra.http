@@ -11,9 +11,9 @@ Content-Type: application/json
   "id_usuario": "1",
   "data_compra": "2023-05-05",
   "produtos": [
-    {"id": 1, "preco": 11.99, "quantidade": 2},
-    {"id": 2, "preco": 6.99, "quantidade": 1},
-    {"id": 3, "preco": 73.49, "quantidade": 4}
+    {"id": 1, "preco": 11.99, "quantidade": 2,"quantidade_estoque": 8},
+    {"id": 2, "preco": 6.99, "quantidade": 1,"quantidade_estoque": 7},
+    {"id": 3, "preco": 73.49, "quantidade": 4,"quantidade_estoque": 8}
   ]
 }
 
@@ -23,11 +23,11 @@ Content-Type: application/json
 
 {
   "id_usuario": "1",
-  "data_compra": "2014-05-05",
+  "data_compra": "2013-12-05",
   "produtos": [
-    {"id": 1, "preco": 10.99, "quantidade": 2},
-    {"id": 2, "preco": 100.00, "quantidade": 1},
-    {"id": 3, "preco": 3.49, "quantidade": 4}
+    {"id": 1, "preco": 10.99, "quantidade": 1,"quantidade_estoque": 7},
+    {"id": 2, "preco": 100.00, "quantidade": 1,"quantidade_estoque": 6},
+    {"id": 3, "preco": 3.49, "quantidade": 1,"quantidade_estoque": 7}
   ]
 }
 
