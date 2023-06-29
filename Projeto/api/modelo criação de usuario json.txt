@@ -1,0 +1,23 @@
+// Dados do usuário a serem enviados
+var usuario = {
+  nome: "Nome do Usuário",
+  email: "usuario@example.com",
+  senha: "senha123",
+  nascimento: "1990-01-01"
+};
+
+// Realizando a solicitação HTTP POST usando o Fetch API
+fetch('<app>/usuario/create.php', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(usuario)
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Usuário criado com sucesso:', data);
+})
+.catch(error => {
+  console.error('Erro ao criar o usuário:', error);
+});

@@ -1,0 +1,21 @@
+Atualizações 29/06/2023:
+menu - Copia (contém as modificações que fiz no menu para o novo css funcionar)
+estilo_customizado (CSS que eu fiz para o menu, a seção de registrar e de login)
+register (html e js): Registrar usuário (usa css customizado)
+login - Copia (teste de login com o css customizado invés de bootstrap)
+usuario.html e .js (agora também registra a senha junto. OBS: Update não altera senha)
+usuario - copia serve apenas para testar como o CSS fica nas páginas antigas, e realmente teria que fazer algumas mudanças para funcionar direito
+OBS: btn-save é a nova classe que eu dei ao botão Salvar no register e no login
+
+
+OBD: Cadastro de usuário está bugando
+
+Deu esse erro aqui
+<br />
+<b>Warning</b>:  Undefined variable $loggedUserName in <b>C:\xampp\htdocs\Projeto\api\usuario\usuario.dao.php</b> on line <b>50</b><br />
+<br />
+<b>Fatal error</b>:  Uncaught Exception: Apenas administradores podem criar um usuário. in C:\xampp\htdocs\Projeto\api\usuario\usuario.dao.php:51
+Stack trace:
+#0 C:\xampp\htdocs\Projeto\api\usuario\create.php(19): UsuarioDAO-&gt;insert(Object(stdClass))
+#1 {main}
+  thrown in <b>C:\xampp\htdocs\Projeto\api\usuario\usuario.dao.php</b> on line <b>51</b><br />

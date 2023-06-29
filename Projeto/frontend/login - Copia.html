@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página de Login</title>
+    <!-- Login na área pública do site -->
+    <link rel="stylesheet" href="estilo_customizado.css">
+
+  </head>
+  <body>
+    <h1 id="logo">Login</h1>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul>
+          <button type="button" class="btn btn-primary"><a href="http://localhost/projeto/frontend/menu.html">Voltar ao menu</a></button>
+        </ul>
+      </div>
+    </nav>
+
+
+    <div class="form" style="left:39.5% !important;">
+
+      <div class="my-5" style="width: 90%;">
+          <fieldset class="user_form">
+            <p> -=Faça login=- </p>
+            <label for="username" class="sr-only">Nome de usuário:</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Nome de usuário" required autofocus>
+          </fieldset>
+
+          <fieldset class="pass_form">
+            <label for="password" class="sr-only">Senha:</label>
+            <input type="password" id="password" name="password" class="sr-only" placeholder="Senha" required>
+          </fieldset>
+
+          <button class="btn btn btn-save" type="submit">Login</button>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div id="footer">
+      Todos os diretos reservado. 2023.
+    </div>
+  </body>
+</html>

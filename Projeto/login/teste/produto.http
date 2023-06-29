@@ -1,0 +1,11 @@
+### PRODUTO
+
+@URL=http://localhost/Projeto/login
+
+### Recurso de autenticação
+POST {{URL}}/create.php
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiJ9.ZGYriRMxKw8_mdjBEmw2VuoBgXxfzJtK8J_ZtBK-CJs 
+
+{
+    "descricao": "Relógio"
+}

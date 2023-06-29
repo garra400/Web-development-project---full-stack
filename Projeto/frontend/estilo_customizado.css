@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:Verdana, Tahoma, sans-serif;
+}
+
+#logo {
+  font-family: Tahoma,"Trebutchet MS", "Lucida Sans Unicode", "Arial";
+  font-size: xx-large;
+  padding: 20px;
+  background: linear-gradient(360deg, rgb(255, 255, 255) 10%, rgb(238, 37, 22)99.9%);
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  color: rgb(12, 23, 175);
+}
+
+img {
+  border: 1px transparent #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+  box-shadow: none;
+}
+
+img:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
+.navbar { 
+  position: fixed;
+  color: #fff;
+  width: 100%;
+  font-weight: bold;
+  z-index: 2; /* Define um z-index maior para o menu ficar acima do #pub */
+}
+
+.navbar-header {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-brand {
+  color: rgb(0, 81, 255);
+  text-decoration:underline;
+  padding: 8px 16px;
+  margin-top: 0;
+  background: linear-gradient(180deg, rgb(255, 255, 255) 10%, rgb(235, 166, 77) 99.9%);
+  justify-content: center;
+  font-family:'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif ;
+  font-size:x-large;
+}
+
+.navbar-nav {
+  list-style-type: none;
+  background-color: rgb(235, 173, 93);
+  display: none;
+  flex-direction: column;
+  margin: 0;
+}
+
+.navbar-nav > li {
+  align-self: center;
+  color: rgb(0, 81, 255);
+  padding: 8px 16px 8px 16px;
+}
+
+.navbar-nav > li > a{
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  text-decoration:underline #a80909;
+  color: rgb(27, 15, 197);
+  transition: 0.47s;
+  transform: scale(1.2,1);
+}
+
+.navbar:hover .navbar-nav {
+  display: flex;
+  flex-direction:column;
+}
+
+.navbar-nav > li:hover {
+  background-color: #c72525bb;
+  text-decoration: none;
+  color: white;
+  transition: 0.5s;
+  transform: scale(1.1, 1.1);
+}
+
+#loggedUserName {
+  font-weight: bold;
+}
+
+#footer {
+  background-color: rgb(238, 37, 22);
+  padding: 10px;
+  clear: left;
+  font-size: 0.8em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+#main {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+#pub {
+  float: right;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 200px;
+  background-color: #f5f5f556;
+  padding: 20px;
+  height: 300px;
+  z-index: 1; /* Define um z-index menor para o #pub ficar atrás das outras divs */
+}
+
+.titles {
+  display: block;
+  color: blue;
+  font-size: x-large;
+  font-family: "Trebutchet MS", "Lucida Sans Unicode", "Arial";
+  text-align: center;
+  margin-top: 50px;
+}
+
+h2 {
+  color: rgba(0, 0, 255, 0.726);
+  font-size: large;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+}
+
+input[type=text],input[type=date], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.form {
+  display:block;
+  position: fixed;
+  border-radius: 5px;
+  padding: 20px;
+  top: 20%;
+  left: 41.5%;
+  text-align: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+button {
+  background-color: rgb(238, 37, 22);
+  border: none;
+  color: white;    
+  padding: 15px 32px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+button:hover {
+  transition: 0.5s;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.btn-primary > a{
+  color:rgb(12, 23, 175) !important;
+  text-decoration: none !important;
+}
+
+.btn-save{ /*btn-save é a nova classe que eu dei ao botão Salvar*/
+  text-align: center  !important;
+}
+
+.sr-only{
+  min-height: 25px;
+  justify-content: center;
+  text-align: center !important;
+}
+
+.pass_form, .user_form, .signin_form, .generic_form{
+  text-align: center !important;
+  padding:15px;
+}
+
+table{
+  margin-top: 10px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,  th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(238, 37, 22);
+  color: white;
+}

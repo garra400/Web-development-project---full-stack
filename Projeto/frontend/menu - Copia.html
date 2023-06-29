@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mercado - Área pública </title>
+
+    <link rel="stylesheet" href="estilo_customizado.css">
+
+</head>
+<body>
+    <h1 id="logo"><a href="http://localhost/projeto/frontend/menu.html"> <img title="Voltar ao menu principal" decoding="async" src="savegnago.png" width="174" height="122"> </a></h1>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a style="display: flex;flex-direction: row;flex-wrap: wrap;" class="navbar-brand" href="#">Menu</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="http://localhost/projeto/frontend/usuario.html">Usuários</a></li>
+                <li><a href="http://localhost/projeto/frontend/categoria.html">Categorias</a></li>
+                <li><a href="http://localhost/projeto/frontend/produto.html">Produtos</a></li>
+                <li><a href="http://localhost/projeto/frontend/compra.html">Compras</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span id="loggedUserName"></span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#" onclick="logout()">Deslogar</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Conteúdo -->
+    <div id = "main">
+        <h1 class="titles"> Título h1 da classe titles </h1>
+        
+        <!-- Primeiro destaque -->
+        <div>
+            <h2>Texto do h2</h2>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat deleniti soluta distinctio officia quis corrupti architecto repellat officiis labore saepe sed, illo tempora, error voluptatem eius. Accusamus eaque facilis quae!
+            </p>
+        </div>
+
+        <!-- Segundo destaque -->
+        <div>
+            <h2>Texto do h2</h2>
+            <p>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis esse deserunt excepturi. Illum deleniti dolorem officiis a autem sint repudiandae atque quidem, vitae hic, obcaecati corrupti cupiditate totam iure voluptates.
+            </p>
+        </div>
+
+        
+    </div>
+
+    <!-- Publicidade -->
+    <div id="pub">
+        Publicidade
+    </div>
+
+    <!-- Rodapé -->
+    <div id="footer">
+        Todos os diretos reservado. 2023.
+    </div>
+
+    <script>
+        function getLoggedUserName() {
+            // Obter o token do usuário logado do localStorage ou de outra forma adequada
+            var token = localStorage.getItem('token'); // Exemplo: obtenha o token do localStorage
+
+            // Fazer uma solicitação AJAX para obter o nome do usuário com base no token
+            // Substitua 'http://localhost/projeto/login/get_users.php' pelo URL correto para obter o nome do usuário
+            $.ajax({
+                url: 'http://localhost/projeto/login/get_users.php',
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                success: function(response) {
+                    // Nome do usuário obtido com sucesso
+                    document.getElementById('loggedUserName').textContent = response.username;
+                },
+                error: function(error) {
+                    // Erro ao obter o nome do usuário
+                    console.error('Erro ao obter o nome do usuário:', error);
+                }
+            });
+        }
+
+        function logout() {
+            if (confirm("Deseja realmente deslogar?")) {
+                // Chamada AJAX ou redirecionar para a página de logout
+                // Exemplo de chamada AJAX usando jQuery:
+                $.ajax({
+                    url: 'http://localhost/projeto/login/logout.php',
+                    method: 'POST',
+                    success: function() {
+                        window.location.reload();
+                    },
+                    error: function() {
+                        alert('Erro ao deslogar');
+                    }
+                });
+            }
+        }
+
+        // Obtém o nome do usuário logado quando a página é carregada
+        document.addEventListener("DOMContentLoaded", function () {
+            getLoggedUserName();
+        });
+    </script>
+</body>
+</html>

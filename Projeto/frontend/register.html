@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrar Conta de Usuário</title>
+
+    <link rel="stylesheet" href="estilo_customizado.css">
+
+  </head>
+  <body>
+    <h1 id="logo">Registrar usuário</h1>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <ul>
+          <button type="button" class="btn btn-primary"><a href="http://localhost/projeto/frontend/menu.html">Voltar ao menu</a></button>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="form">
+
+      <div class="my-5">
+          <fieldset class="signin_form">
+            <label class="form-label">Nome</label>
+            <input type="text" id="fNome" class="form-control" />
+          </fieldset>
+
+          <fieldset class="signin_form">
+            <label class="form-label">E-mail</label>
+            <input type="text" id="fEmail" class="form-control" />
+          </fieldset>
+
+          <fieldset class="signin_form">
+            <label class="form-label">Nascimento</label>
+            <input type="date" id="fNascimento" class="form-control" />
+          </fieldset>
+
+          <fieldset class="signin_form">
+            <label class="form-label">Senha</label>
+            <input type="text" id="fSenha" class="form-control" />
+          </fieldset>
+
+          <button type="button" class="btn btn-save" onclick="save()">Salvar</button>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div id="footer">
+      Todos os diretos reservado. 2023.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+@URL=http://localhost/Projeto/api
+
+### Obter todos os produtos
+GET {{URL}}/produto/get.php
+
+### Atualizar produto
+POST {{URL}}/produto/update.php?id=2
+Content-Type: application/json
+
+{
+  "nome": "Produto mais caro",
+  "descricao": "Aumentou o preco",
+  "preco": 2.50,
+  "quantidade" : 10,
+  "id_categoria": 1
+}
+
+### Criar um produto
+POST {{URL}}/produto/create.php
+Content-Type: application/json
+
+{
+  "nome": "Produto mais barato",
+  "descricao": "Preco padrao",
+  "preco": 1.00,
+  "quantidade" : 10,
+  "id_categoria": 1
+}
+
+
+### Deletar um produto
+GET {{URL}}/produto/delete.php?id=4

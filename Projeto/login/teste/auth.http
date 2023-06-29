@@ -1,0 +1,11 @@
+
+
+@URL=http://localhost/Projeto/login
+
+### Recurso de autenticação
+POST {{URL}}/authenticate.php
+
+{
+    "username": "teste",
+    "password": "1234"
+}
